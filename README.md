@@ -30,16 +30,6 @@ make
 
 This will compile the project and generate an executable file named so_long.
 
-### Running the Game
-Once compiled successfully, you can run the game by executing the generated so_long executable:
-```bash
-./so_long maps/map1.ber
-```
-Replace **<maps/map1.ber>** with the path to the map file you want to use for the game. The map file must have a **.ber** extension and follow the specified format.
-
-### Controls
-Use the arrow keys (up, down, left, right) to move the player character within the game window. Press the **ESC** key to exit the game at any time.
-
 ## Dependencies
 
 My implementation of the "so_long" project includes all necessary dependencies within the source code, requiring no additional installations.
@@ -70,3 +60,15 @@ glxinfo | grep "OpenGL version"
 lspci -k | grep -A 2 -E "(VGA|3D)"
 ```
 The first command (glxinfo | grep "OpenGL version") checks for the OpenGL version supported by the system, which is essential for MinilibX. The second command (lspci -k | grep -A 2 -E "(VGA|3D)") lists information about the graphics hardware and associated drivers, allowing users to verify if the appropriate graphics drivers are installed and up-to-date.
+
+## Running the Game
+Once compiled successfully, you can run the game by executing the generated so_long executable:
+```bash
+./so_long maps/map1.ber
+```
+Replace **<maps/map1.ber>** with the path to the map file you want to use for the game. The map file must have a **.ber** extension and follow the specified format.
+
+### Controls
+Use the arrow keys (⬅️, ➡️, ⬆️, ⬇️) to move the player character within the game window. Press the **ESC** key to exit the game at any time.
+
+**Have fun with so_long!** 🎮
