@@ -16,7 +16,7 @@ Through "So_Long," we have the opportunity to explore fundamental concepts in ga
 To run the "So_Long" project, clone the repository containing the project files from GitHub:
 
 ```bash
-git clone <repository_url>
+git clone https://github.com/dansylvain/42_so_long so_long
 ```
 
 ### Compiling the Project
@@ -24,7 +24,7 @@ git clone <repository_url>
 Navigate to the project directory and compile the project using the provided Makefile. Here's how:
 
 ```bash
-cd so_long_repo
+cd so_long
 make
 ```
 
@@ -33,9 +33,9 @@ This will compile the project and generate an executable file named so_long.
 ### Running the Game
 Once compiled successfully, you can run the game by executing the generated so_long executable:
 ```bash
-./so_long <map_file>
+./so_long maps/map1.ber
 ```
-Replace **<map_file>** with the path to the map file you want to use for the game. The map file must have a **.ber** extension and follow the specified format.
+Replace **<maps/map1.ber>** with the path to the map file you want to use for the game. The map file must have a **.ber** extension and follow the specified format.
 
 ### Controls
 Use the arrow keys (up, down, left, right) to move the player character within the game window. Press the **ESC** key to exit the game at any time.
