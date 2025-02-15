@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data_structs.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsylvain <dsylvain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 13:12:02 by dan               #+#    #+#             */
-/*   Updated: 2024/01/15 09:49:46 by dsylvain         ###   ########.fr       */
+/*   Updated: 2025/02/15 20:03:09 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ void	set_map_data(t_game_data **data, char*line, int x, int y)
 		(*data)->map[y][x].type = collectible;
 		(*data)->meta.coll_num++;
 	}
+    if (line[x] == 'D')
+        (*data)->map[y][x].type = dark_kristal;
 	if (line[x] == 'P')
 	{
 		(*data)->map[y][x].type = position;

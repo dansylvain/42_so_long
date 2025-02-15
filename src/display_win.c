@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_win.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsylvain <dsylvain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 15:44:59 by dan               #+#    #+#             */
-/*   Updated: 2024/01/16 04:31:25 by dsylvain         ###   ########.fr       */
+/*   Updated: 2025/02/15 20:01:17 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ void	display_map_elements(t_game_data	*data)
 			if (data->map[y][x].type == collectible)
 				mlx_put_image_to_window(data->win.mlx, data->win.win,
 					data->sprites[S_CRYSTAL_20].ptr, x * 64, y * 64);
-			if (data->map[y][x].is_exit_door == 1 && data->meta.coll_num == 0)
+            if (data->map[y][x].type == dark_kristal)
+                mlx_put_image_to_window(data->win.mlx, data->win.win,
+                    data->sprites[S_CRYSTAL_00].ptr, x * 64, y * 64);    
+            if (data->map[y][x].is_exit_door == 1 && data->meta.coll_num == 0)
 				mlx_put_image_to_window(data->win.mlx, data->win.win,
 					data->sprites[S_CRYSTAL_41].ptr, x * 64, y * 64);
 			if (data->map[y][x].type == position)
