@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+void	display_changed_elements(t_game_data	*data, int origin[2], int destination[2]);
 
 /**========================================================================
  *                             move_funcs.c
@@ -42,7 +43,9 @@ void	move_left(t_window *win)
 		win->data->meta.total_moves++;
 		ft_printf("%i\n", win->data->meta.total_moves);
 	}
-	display_map(win->data);
+	int or[2] = {x, y};
+	int dest[2] = {x - 1, y};
+	display_changed_elements(win->data, or, dest);
 }
 
 /**========================================================================
@@ -70,7 +73,9 @@ void	move_right(t_window *win)
 		win->data->meta.total_moves++;
 		ft_printf("%i\n", win->data->meta.total_moves);
 	}
-	display_map(win->data);
+	int or[2] = {x, y};
+	int dest[2] = {x + 1, y};
+	display_changed_elements(win->data, or, dest);
 }
 
 /**========================================================================
@@ -98,7 +103,9 @@ void	move_down(t_window *win)
 		win->data->meta.total_moves++;
 		ft_printf("%i\n", win->data->meta.total_moves);
 	}
-	display_map(win->data);
+	int or[2] = {x, y};
+	int dest[2] = {x, y + 1};
+	display_changed_elements(win->data, or, dest);
 }
 
 /**========================================================================
@@ -126,5 +133,7 @@ void	move_up(t_window *win)
 		win->data->meta.total_moves++;
 		ft_printf("%i\n", win->data->meta.total_moves);
 	}
-	display_map(win->data);
+	int or[2] = {x, y};
+	int dest[2] = {x, y - 1};
+	display_changed_elements(win->data, or, dest);
 }
