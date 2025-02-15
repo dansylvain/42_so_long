@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_is_valid_2.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsylvain <dsylvain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 13:51:09 by dan               #+#    #+#             */
-/*   Updated: 2024/01/16 04:29:30 by dsylvain         ###   ########.fr       */
+/*   Updated: 2025/02/15 19:52:02 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_chars_are_valid(char **map_char_tab)
 		while (map_char_tab[i][j])
 		{
 			c = map_char_tab[i][j];
-			if (c != 'C' && c != 'E' && c != 'P' && c != '1' && c != '0')
+			if (c != 'C' && c != 'E' && c != 'P' && c != '1' && c != '0' && c != 'D')
 				return (0);
 			j++;
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsylvain <dsylvain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 15:50:48 by dan               #+#    #+#             */
-/*   Updated: 2024/01/15 09:42:22 by dsylvain         ###   ########.fr       */
+/*   Updated: 2025/02/15 19:47:31 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 void	inner_func(t_window *win, int x, int y)
 {
+    
 	if (win->data->map[y][x].type == collectible)
 		win->data->meta.coll_num--;
 	if (win->data->meta.coll_num == 0)

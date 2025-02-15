@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsylvain <dsylvain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 08:59:03 by dan               #+#    #+#             */
-/*   Updated: 2024/01/16 04:33:18 by dsylvain         ###   ########.fr       */
+/*   Updated: 2025/02/15 19:54:22 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ typedef enum t_type
 	wall,
 	collectible,
 	exit_door,
-	position
+	position,
+    dark_kristal,
 }	t_type;
 
 typedef enum e_keycode
@@ -87,6 +88,7 @@ struct s_game_data
 	t_meta_data		meta;
 	t_map			**map;
 	t_player		player;
+    int             frame_count;
 };
 
 int		check_map_is_valid(char *map_path);
