@@ -87,36 +87,35 @@ void	display_map_elements(t_game_data	*data)
 void	display_changed_elements(t_game_data *data, int origin[2],
 		int destination[2])
 {
-	int	x;
-	int	y;
+	int	xy[2];
 	int	is_changed;
 
-	y = 0;
-	while (y < data->meta.map_size_y)
+	xy[1] = 0;
+	while (xy[1] < data->meta.map_size_y)
 	{
-		x = 0;
-		while (x < data->meta.map_size_x)
+		xy[0] = 0;
+		while (xy[0] < data->meta.map_size_x)
 		{
-			is_changed = ((x == destination[0] && y == destination[1])
-					|| (x == origin[0] && y == origin[1]));
-			if (data->map[y][x].type == wall && is_changed)
+			is_changed = ((xy[0] == destination[0] && xy[1] == destination[1])
+					|| (xy[0] == origin[0] && xy[1] == origin[1]));
+			if (data->map[xy[1]][xy[0]].type == wall && is_changed)
 				mlx_put_image_to_window(data->win.mlx, data->win.win,
-					data->sprites[S_ROCK_00].ptr, x * 64, y * 64);
-			else if (data->map[y][x].type == collectible && is_changed)
+					data->sprites[S_ROCK_00].ptr, xy[0] * 64, xy[1] * 64);
+			else if (data->map[xy[1]][xy[0]].type == collectible && is_changed)
 				mlx_put_image_to_window(data->win.mlx, data->win.win,
-					data->sprites[S_CRYSTAL_20].ptr, x * 64, y * 64);
-			else if (data->map[y][x].is_exit_door == 1
+					data->sprites[S_CRYSTAL_20].ptr, xy[0] * 64, xy[1] * 64);
+			else if (data->map[xy[1]][xy[0]].is_exit_door == 1
 				&& data->meta.coll_num == 0 && is_changed)
 				mlx_put_image_to_window(data->win.mlx, data->win.win,
-					data->sprites[S_CRYSTAL_41].ptr, x * 64, y * 64);
-			else if (data->map[y][x].type == position && is_changed)
+					data->sprites[S_CRYSTAL_41].ptr, xy[0] * 64, xy[1] * 64);
+			else if (data->map[xy[1]][xy[0]].type == position && is_changed)
 				mlx_put_image_to_window(data->win.mlx, data->win.win,
-					data->sprites[S_CHAR_SPRITE].ptr, x * 64, y * 64);
+					data->sprites[S_CHAR_SPRITE].ptr, xy[0] * 64, xy[1] * 64);
 			else if (is_changed)
 				mlx_put_image_to_window(data->win.mlx, data->win.win,
-					data->sprites[S_GROUND_00].ptr, x * 64, y * 64);
-			x++;
+					data->sprites[S_GROUND_00].ptr, xy[0] * 64, xy[1] * 64);
+			xy[0]++;
 		}
-		y++;
+		xy[1]++;
 	}
 }
