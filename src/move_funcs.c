@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-void	display_changed_elements(t_game_data	*data, int origin[2], int destination[2]);
-void	display_map_elements(t_game_data	*data);
 
 /**========================================================================
  *                             move_funcs.c
@@ -22,34 +20,40 @@ void	display_map_elements(t_game_data	*data);
 /**========================================================================
  *                           move_left
  *========================================================================**/
+
+void	inner_func(t_window *win, int x, int y)
+{
+	if (win->data->map[y][x].type == collectible)
+		win->data->meta.coll_num--;
+	if (win->data->meta.coll_num == 0)
+		display_map_elements(win->data);
+	if (win->data->map[y][x].is_exit_door == 1
+		&& win->data->meta.coll_num == 0)
+		mlx_loop_end(win->mlx);
+	win->data->map[y][x].type = position;
+}
+
 void	move_left(t_window *win)
 {
 	int		x;
 	int		y;
-	t_type	*t;
+	int		or[2];
+	int		dest[2];
 
 	x = win->data->player.x;
 	y = win->data->player.y;
-	t = &(win->data->map[y][x - 1].type);
-	if (*t != wall)
+	if (win->data->map[y][x - 1].type != wall)
 	{
-		if (*t == collectible)
-			win->data->meta.coll_num--;
-		if (win->data->meta.coll_num == 0)
-			display_map_elements(win->data);
-		if (win->data->map[y][x - 1].is_exit_door == 1
-			&& win->data->meta.coll_num == 0)
-			mlx_loop_end(win->mlx);
-		*t = position;
+		inner_func(win, x - 1, y);
 		win->data->map[y][x].type = empty;
 		win->data->player.x -= 1;
 		win->data->meta.total_moves++;
 		ft_printf("%i\n", win->data->meta.total_moves);
 	}
-	ft_printf("mov: x: %i, y: %i\n", x, y);
-	
-	int or[2] = {x, y};
-	int dest[2] = {x - 1, y};
+	or[0] = x;
+	or[1] = y;
+	dest[0] = x - 1;
+	dest[1] = y;
 	display_changed_elements(win->data, or, dest);
 }
 
@@ -60,30 +64,23 @@ void	move_right(t_window *win)
 {
 	int		x;
 	int		y;
-	t_type	*t;
+	int		or[2];
+	int		dest[2];
 
 	x = win->data->player.x;
 	y = win->data->player.y;
-	t = &(win->data->map[y][x + 1].type);
-	if (*t != wall)
+	if (win->data->map[y][x + 1].type != wall)
 	{
-		if (*t == collectible)
-			win->data->meta.coll_num--;
-		if (win->data->meta.coll_num == 0)
-			display_map_elements(win->data);
-		if (win->data->map[y][x + 1].is_exit_door == 1
-			&& win->data->meta.coll_num == 0)
-			mlx_loop_end(win->mlx);
-		*t = position;
+		inner_func(win, x + 1, y);
 		win->data->map[y][x].type = empty;
 		win->data->player.x += 1;
 		win->data->meta.total_moves++;
 		ft_printf("%i\n", win->data->meta.total_moves);
 	}
-	ft_printf("mov: x: %i, y: %i\n", x, y);
-	// int or[2];
-	int or[2] = {x, y};
-	int dest[2] = {x + 1, y};
+	or[0] = x;
+	or[1] = y;
+	dest[0] = x + 1;
+	dest[1] = y;
 	display_changed_elements(win->data, or, dest);
 }
 
@@ -94,30 +91,23 @@ void	move_down(t_window *win)
 {
 	int		x;
 	int		y;
-	t_type	*t;
+	int		or[2];
+	int		dest[2];
 
 	x = win->data->player.x;
 	y = win->data->player.y;
-	t = &(win->data->map[y + 1][x].type);
-	if (*t != wall)
+	if (win->data->map[y + 1][x].type != wall)
 	{
-		if (*t == collectible)
-			win->data->meta.coll_num--;
-		if (win->data->meta.coll_num == 0)
-			display_map_elements(win->data);
-		if (win->data->map[y + 1][x].is_exit_door == 1
-			&& win->data->meta.coll_num == 0)
-			mlx_loop_end(win->mlx);
-		*t = position;
+		inner_func(win, x, y + 1);
 		win->data->map[y][x].type = empty;
 		win->data->player.y += 1;
 		win->data->meta.total_moves++;
 		ft_printf("%i\n", win->data->meta.total_moves);
 	}
-	ft_printf("mov: x: %i, y: %i\n", x, y);
-	// int or[2];
-	int or[2] = {x, y};
-	int dest[2] = {x, y + 1};
+	or[0] = x;
+	or[1] = y;
+	dest[0] = x;
+	dest[1] = y + 1;
 	display_changed_elements(win->data, or, dest);
 }
 
@@ -128,29 +118,22 @@ void	move_up(t_window *win)
 {
 	int		x;
 	int		y;
-	t_type	*t;
+	int		or[2];
+	int		dest[2];
 
 	x = win->data->player.x;
 	y = win->data->player.y;
-	t = &(win->data->map[y - 1][x].type);
-	if (*t != wall)
+	if (win->data->map[y - 1][x].type != wall)
 	{
-		if (*t == collectible)
-			win->data->meta.coll_num--;
-		if (win->data->meta.coll_num == 0)
-			display_map_elements(win->data);
-		if (win->data->map[y - 1][x].is_exit_door == 1
-			&& win->data->meta.coll_num == 0)
-			mlx_loop_end(win->mlx);
-		*t = position;
+		inner_func(win, x, y - 1);
 		win->data->map[y][x].type = empty;
 		win->data->player.y -= 1;
 		win->data->meta.total_moves++;
 		ft_printf("%i\n", win->data->meta.total_moves);
 	}
-	ft_printf("mov: x: %i, y: %i\n", x, y);
-	// int or[2];
-	int or[2] = {x, y};
-	int dest[2] = {x, y - 1};
+	or[0] = x;
+	or[1] = y;
+	dest[0] = x;
+	dest[1] = y - 1;
 	display_changed_elements(win->data, or, dest);
 }
