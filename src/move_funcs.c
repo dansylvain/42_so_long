@@ -12,6 +12,7 @@
 
 #include "../includes/so_long.h"
 void	display_changed_elements(t_game_data	*data, int origin[2], int destination[2]);
+void	display_map_elements(t_game_data	*data);
 
 /**========================================================================
  *                             move_funcs.c
@@ -34,6 +35,8 @@ void	move_left(t_window *win)
 	{
 		if (*t == collectible)
 			win->data->meta.coll_num--;
+		if (win->data->meta.coll_num == 0)
+			display_map_elements(win->data);
 		if (win->data->map[y][x - 1].is_exit_door == 1
 			&& win->data->meta.coll_num == 0)
 			mlx_loop_end(win->mlx);
@@ -43,6 +46,8 @@ void	move_left(t_window *win)
 		win->data->meta.total_moves++;
 		ft_printf("%i\n", win->data->meta.total_moves);
 	}
+	ft_printf("mov: x: %i, y: %i\n", x, y);
+	
 	int or[2] = {x, y};
 	int dest[2] = {x - 1, y};
 	display_changed_elements(win->data, or, dest);
@@ -64,6 +69,8 @@ void	move_right(t_window *win)
 	{
 		if (*t == collectible)
 			win->data->meta.coll_num--;
+		if (win->data->meta.coll_num == 0)
+			display_map_elements(win->data);
 		if (win->data->map[y][x + 1].is_exit_door == 1
 			&& win->data->meta.coll_num == 0)
 			mlx_loop_end(win->mlx);
@@ -73,6 +80,8 @@ void	move_right(t_window *win)
 		win->data->meta.total_moves++;
 		ft_printf("%i\n", win->data->meta.total_moves);
 	}
+	ft_printf("mov: x: %i, y: %i\n", x, y);
+	// int or[2];
 	int or[2] = {x, y};
 	int dest[2] = {x + 1, y};
 	display_changed_elements(win->data, or, dest);
@@ -94,6 +103,8 @@ void	move_down(t_window *win)
 	{
 		if (*t == collectible)
 			win->data->meta.coll_num--;
+		if (win->data->meta.coll_num == 0)
+			display_map_elements(win->data);
 		if (win->data->map[y + 1][x].is_exit_door == 1
 			&& win->data->meta.coll_num == 0)
 			mlx_loop_end(win->mlx);
@@ -103,6 +114,8 @@ void	move_down(t_window *win)
 		win->data->meta.total_moves++;
 		ft_printf("%i\n", win->data->meta.total_moves);
 	}
+	ft_printf("mov: x: %i, y: %i\n", x, y);
+	// int or[2];
 	int or[2] = {x, y};
 	int dest[2] = {x, y + 1};
 	display_changed_elements(win->data, or, dest);
@@ -124,6 +137,8 @@ void	move_up(t_window *win)
 	{
 		if (*t == collectible)
 			win->data->meta.coll_num--;
+		if (win->data->meta.coll_num == 0)
+			display_map_elements(win->data);
 		if (win->data->map[y - 1][x].is_exit_door == 1
 			&& win->data->meta.coll_num == 0)
 			mlx_loop_end(win->mlx);
@@ -133,6 +148,8 @@ void	move_up(t_window *win)
 		win->data->meta.total_moves++;
 		ft_printf("%i\n", win->data->meta.total_moves);
 	}
+	ft_printf("mov: x: %i, y: %i\n", x, y);
+	// int or[2];
 	int or[2] = {x, y};
 	int dest[2] = {x, y - 1};
 	display_changed_elements(win->data, or, dest);
