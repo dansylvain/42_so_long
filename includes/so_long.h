@@ -96,7 +96,8 @@ void	display_map(t_game_data *data);
 int		key_hook(int keycode, t_window *win);
 void	display_error(void);
 int		handle_close_window(void *win);
-void	display_changed_elements(t_game_data	*data, int origin[2], int destination[2]);
+void	display_changed_elements(t_game_data	*data, int origin[2],
+			int destination[2]);
 void	display_map_elements(t_game_data	*data);
 
 #endif
